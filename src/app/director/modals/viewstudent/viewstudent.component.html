@@ -1,0 +1,279 @@
+<div class="modal-header justify-content-center">
+    <h4 class="modal-title" id="modal-basic-title">Ver Estudiante</h4>
+</div>
+<div class="modal-body">
+    <ngb-carousel #carousel id="carousel" class="relative">
+        <ng-template ngbSlide #firststep id="firststep">
+            <form class="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Nombre</label>
+                                    <input readonly type="text" name="input" class="input"
+                                        placeholder="Nombre Apellido Apellido" [value]="vs.name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Matricula</label>
+                                    <input readonly type="text" name="input" class="input" placeholder="2023498999"
+                                        [value]="vs.uni_id">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">R.U.N.</label>
+                                    <input readonly appRutFormat type="text" name="input" class="input"
+                                        placeholder="12.345.678-9" [value]="vs.dni">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Año</label>
+                                    <input readonly type="text" name="input" class="input" placeholder="2023"
+                                        [value]="vs.year">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Email Principal</label>
+                                    <input readonly type="text" name="input" class="input"
+                                        placeholder="correo_estudiante@utalca.cl" [value]="vs.email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Email Opcional</label>
+                                    <input readonly type="text" name="input" class="input"
+                                        placeholder="Sin Correo Extra" [value]="vs.emailextra">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Estado</label>
+                                    <input readonly type="text" name="input" class="input"
+                                        placeholder="Activo/Graduado/Eliminado" [value]="vs.state">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Financiamiento</label>
+                                    <input readonly type="text" name="input" class="input"
+                                        placeholder="Conicyt/Utalca/Sin Beca" [value]="vs.scholarship">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Supervisor</label>
+                                    <input readonly type="text" name="input" class="input" placeholder="Supervisor 1"
+                                        [value]="vs.advisor">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Co-Supervisor</label>
+                                    <input readonly type="text" name="input" class="input"
+                                        placeholder="Sin Segundo Supervisor" [value]="vs.coadvisor">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+
+        <ng-template ngbSlide #secondstep id="secondstep">
+            <div class="semesters-container">
+                <div class="semester semester-1">
+                    <div class="semester-title"><span>1°</span></div>
+                    <div id="course1" #course1 [ngClass]="{
+                                        'course-aproved': vs.courses.course1 == 'ap',
+                                        'course-deactivated' : vs.courses.course1 == 'no',
+                                        'course-activated' : vs.courses.course1 == 'ac',
+                                        'course-critical' : vs.courses.course1 == 'cr'
+                                    }" class="course course1">
+                        <span>Sistemas de Ingeniería</span>
+                    </div>
+                    <div id="course2" #course2 [ngClass]="{
+                                        'course-aproved': vs.courses.course2 == 'ap',
+                                        'course-deactivated' : vs.courses.course2 == 'no',
+                                        'course-activated' : vs.courses.course2 == 'ac',
+                                        'course-critical' : vs.courses.course2 == 'cr'
+                                    }" class="course course2">
+                        <span>Optimización de Sistemas</span>
+                    </div>
+                    <div id="course3" #course3 [ngClass]="{
+                                        'course-aproved': vs.courses.course3 == 'ap',
+                                        'course-deactivated' : vs.courses.course3 == 'no',
+                                        'course-activated' : vs.courses.course3 == 'ac',
+                                        'course-critical' : vs.courses.course3 == 'cr'
+                                    }" class="course course3">
+                        <span>Innovación Tecnológica</span>
+                    </div>
+                    <div id="course4" #course4 [ngClass]="{
+                                        'course-aproved': vs.courses.course4 == 'ap',
+                                        'course-deactivated' : vs.courses.course4 == 'no',
+                                        'course-activated' : vs.courses.course4 == 'ac',
+                                        'course-critical' : vs.courses.course4 == 'cr'
+                                    }" class="course course4">
+                        <span>Metodología de Investigación</span>
+                    </div>
+                    <div id="course5" #course5 [ngClass]="{
+                                        'course-aproved': vs.courses.course5 == 'ap',
+                                        'course-deactivated' : vs.courses.course5 == 'no',
+                                        'course-activated' : vs.courses.course5 == 'ac',
+                                        'course-critical' : vs.courses.course5 == 'cr'
+                                    }" class="course course5">
+                        <span>Electivo I</span>
+                    </div>
+                </div>
+                <div class="semester semester-2">
+                    <div class="semester-title"><span>2°</span></div>
+                    <div id="course6" #course6 [ngClass]="{
+                                        'course-aproved': vs.courses.course6 == 'ap',
+                                        'course-deactivated' : vs.courses.course6 == 'no',
+                                        'course-activated' : vs.courses.course6 == 'ac',
+                                        'course-critical' : vs.courses.course6 == 'cr'
+                                    }" class="course course6">
+                        <span>Tópico de Especialidad I</span>
+                    </div>
+                    <div id="course7" #course7 [ngClass]="{
+                                        'course-aproved': vs.courses.course7 == 'ap',
+                                        'course-deactivated' : vs.courses.course7 == 'no',
+                                        'course-activated' : vs.courses.course7 == 'ac',
+                                        'course-critical' : vs.courses.course7 == 'cr'
+                                    }" class="course course7">
+                        <span>Análisis de Estado del Arte</span>
+                    </div>
+                    <div id="course8" #course8 [ngClass]="{
+                                        'course-aproved': vs.courses.course8 == 'ap',
+                                        'course-deactivated' : vs.courses.course8 == 'no',
+                                        'course-activated' : vs.courses.course8 == 'ac',
+                                        'course-critical' : vs.courses.course8 == 'cr'
+                                    }" class="course course8">
+                        <span>Unidad de Investigación I</span>
+                    </div>
+                    <div id="course9" #course9 [ngClass]="{
+                                        'course-aproved': vs.courses.course9 == 'ap',
+                                        'course-deactivated' : vs.courses.course9 == 'no',
+                                        'course-activated' : vs.courses.course9 == 'ac',
+                                        'course-critical' : vs.courses.course9 == 'cr'
+                                    }" class="course course9">
+                        <span>Electivo II</span>
+                    </div>
+                    <div id="course10" #course10 [ngClass]="{
+                                        'course-aproved': vs.courses.course10 == 'ap',
+                                        'course-deactivated' : vs.courses.course10 == 'no',
+                                        'course-activated' : vs.courses.course10 == 'ac',
+                                        'course-critical' : vs.courses.course10 == 'cr'
+                                    }" class="course course10">
+                        <span>Electivo III</span>
+                    </div>
+                </div>
+                <div class="semester semester-3">
+                    <div class="semester-title"><span>3°</span></div>
+                    <div id="course11" #course11 [ngClass]="{
+                                        'course-aproved': vs.courses.course11 == 'ap',
+                                        'course-deactivated' : vs.courses.course11 == 'no',
+                                        'course-activated' : vs.courses.course11 == 'ac',
+                                        'course-critical' : vs.courses.course11 == 'cr'
+                                    }" class="course course11">
+                        <span>Unidad de Investigación II</span>
+                    </div>
+                    <div id="course12" #course12 [ngClass]="{
+                                        'course-aproved': vs.courses.course12 == 'ap',
+                                        'course-deactivated' : vs.courses.course12 == 'no',
+                                        'course-activated' : vs.courses.course12 == 'ac',
+                                        'course-critical' : vs.courses.course12 == 'cr'
+                                    }" class="course course12">
+                        <span>Electivo IV</span>
+                    </div>
+                    <div id="course13" #course13 [ngClass]="{
+                                        'course-aproved': vs.courses.course13 == 'ap',
+                                        'course-deactivated' : vs.courses.course13 == 'no',
+                                        'course-activated' : vs.courses.course13 == 'ac',
+                                        'course-critical' : vs.courses.course13 == 'cr'
+                                    }" class="course course13">
+                        <span>Tópico de Especialidad II</span>
+                    </div>
+                    <div id="course14" #course14 [ngClass]="{
+                                        'course-aproved': vs.courses.course14 == 'ap',
+                                        'course-deactivated' : vs.courses.course14 == 'no',
+                                        'course-activated' : vs.courses.course14 == 'ac',
+                                        'course-critical' : vs.courses.course14 == 'cr'
+                                    }" class="course course14">
+                        <span>Proyecto de Tesis I</span>
+                    </div>
+                </div>
+                <div class="semester semester-4">
+                    <div class="semester-title"><span>4°</span></div>
+                    <div id="course15" #course15 [ngClass]="{
+                                        'course-aproved': vs.courses.course15 == 'ap',
+                                        'course-deactivated' : vs.courses.course15 == 'no',
+                                        'course-activated' : vs.courses.course15 == 'ac',
+                                        'course-critical' : vs.courses.course15 == 'cr'
+                                    }" class="course course15">
+                        <span>Taller de Publicación</span>
+                    </div>
+                    <div id="course16" #course16 [ngClass]="{
+                                        'course-aproved': vs.courses.course16 == 'ap',
+                                        'course-deactivated' : vs.courses.course16 == 'no',
+                                        'course-activated' : vs.courses.course16 == 'ac',
+                                        'course-critical' : vs.courses.course16 == 'cr'
+                                    }" class="course course16">
+                        <span>Proyecto de Tesis II</span>
+                    </div>
+                </div>
+                <div class="semester semester-5">
+                    <div class="semester-title"><span>5°</span></div>
+                    <div id="course17" #course17 [ngClass]="{
+                                        'course-aproved': vs.courses.course17 == 'ap',
+                                        'course-deactivated' : vs.courses.course17 == 'no',
+                                        'course-activated' : vs.courses.course17 == 'ac',
+                                        'course-critical' : vs.courses.course17 == 'cr'
+                                    }" class="course course17">
+                        <span>Tesis Doctoral I</span>
+                    </div>
+                </div>
+                <div class="semester semester-6">
+                    <div class="semester-title"><span>6°</span></div>
+                    <div id="course18" #course18 [ngClass]="{
+                                        'course-aproved': vs.courses.course18 == 'ap',
+                                        'course-deactivated' : vs.courses.course18 == 'no',
+                                        'course-activated' : vs.courses.course18 == 'ac',
+                                        'course-critical' : vs.courses.course18 == 'cr'
+                                    }" class="course course18">
+                        <span>Tesis Doctoral II</span>
+                    </div>
+                </div>
+                <div class="semester semester-78">
+                    <div class="semester-title"><span>7° 8°</span></div>
+                    <div id="course19" #course19 [ngClass]="{
+                                        'course-aproved': vs.courses.course19 == 'ap',
+                                        'course-deactivated' : vs.courses.course19 == 'no',
+                                        'course-activated' : vs.courses.course19 == 'ac',
+                                        'course-critical' : vs.courses.course19 == 'cr'
+                                    }" class="course course19">
+                        <span>Tesis de Doctorado y Examen de Grado</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template ngbSlide #thirdstep id="thirdstep">
+            <div class="marks-container">
+                <h3>Aquí van a ir las notas del estudiante en los distintos módulos</h3>
+            </div>
+        </ng-template>
+
+    </ngb-carousel>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-custom btn-6rem" (click)="closeModal()">Cerrar</button>
+    <button type="button" class="btn btn-custom btn-6rem" (click)="backSlide(carousel)"
+        [disabled]="backButton">Atrás</button>
+    <button type="button" class="btn btn-custom btn-6rem" (click)="nextSlide(carousel)"
+        [disabled]="nextButton">Siguiente</button>
+</div>

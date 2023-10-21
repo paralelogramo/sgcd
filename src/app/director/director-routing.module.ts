@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '',
     component: DirectorComponent,
     children: [
+      { path: '', redirectTo: 'estudiantes', pathMatch: 'full' },
       { path: 'resumen', component: ResumeComponent },
       { path: 'academicos', component: AcademicsComponent },
       { path: 'estudiantes', component: StudentsComponent },

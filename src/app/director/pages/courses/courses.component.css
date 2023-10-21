@@ -1,0 +1,101 @@
+.courses-base {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.courses-row {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.courses-container {
+    display: grid;
+    place-items: center;
+    background-color: black;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.courses-container::-webkit-scrollbar {
+    display: none;
+}
+
+.courses-box {
+    position: relative;
+    background-color: red;
+    width: 98%;
+    height: 100%;
+    
+}
+
+.card-box {
+    position: relative;
+    background-color: blue;
+    width: 98%;
+    height: 100%;
+}
+
+.row {
+    padding: 0px !important;
+}
+
+.semesters {
+    background-color: green;
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 10px;
+}
+
+
+.semester-box {
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.semester-1 {
+    grid-area: 1 / 1 / 2 / 6;
+    background-color: aqua;
+}
+
+.semester-2 {
+    grid-area: 2 / 1 / 3 / 6;
+    background-color: blueviolet;
+}
+
+.semester-3 {
+    grid-area: 3 / 1 / 4 / 6;
+    background-color: brown;
+}
+
+.semester-4 {
+    grid-area: 4 / 1 / 5 / 6;
+    background-color: cadetblue;
+}
+
+.semester-5 {
+    grid-area: 5 / 1 / 6 / 6;
+    background-color: chartreuse;
+}
+
+.semester-6 {
+    grid-area: 6 / 1 / 7 / 6;
+    background-color: coral;
+}
+
+.semester-7 {
+    grid-area: 7 / 1 / 8 / 6;
+    background-color: crimson;
+}
+
+.semester-8 {
+    grid-area: 8 / 1 / 9 / 6;
+    background-color: slateblue;
+}

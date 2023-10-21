@@ -1,0 +1,179 @@
+<!-- <div class="modal-header ns-modal-header justify-content-center">
+    <h4 class="modal-title ns-modal-title" id="modal-basic-title">Agregar Estudiante</h4>
+</div>
+<div class="modal-body ns-modal-body">
+    <ngb-carousel #carousel id="carousel">
+        <ng-template ngbSlide #firststep id="firststep">
+            <form [formGroup]="newStudentForm" (ngSubmit)="submitNewStudent(newStudentForm)" class="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Nombre *</label>
+                                    <input formControlName="name" type="text" name="input" class="input"
+                                        placeholder="Nombre Apellido Apellido" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Matricula *</label>
+                                    <input formControlName="uni_id" type="text" name="input" class="input"
+                                        placeholder="2023498999" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">R.U.N. *</label>
+                                    <input appRutFormat formControlName="dni" type="text" name="input" class="input"
+                                        placeholder="12.345.678-9" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Año *</label>
+                                    <input formControlName="year" type="text" name="input" class="input"
+                                        placeholder="2023" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Email Principal *</label>
+                                    <input formControlName="email" type="text" name="input" class="input"
+                                        placeholder="correo_estudiante@utalca.cl" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Email Opcional</label>
+                                    <input formControlName="emailextra" type="text" name="input" class="input"
+                                        placeholder="correo_extra@utalca.cl" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Estado *</label>
+                                    <input formControlName="state" type="text" name="input" class="input"
+                                        placeholder="Activo/Graduado/Eliminado" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Financiamiento *</label>
+                                    <input formControlName="scholarship" type="text" name="input" class="input"
+                                        placeholder="Conicyt/Utalca/Sin Beca" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Supervisor *</label>
+                                    <input formControlName="advisor" type="text" name="input" class="input"
+                                        placeholder="Supervisor 1" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="coolinput">
+                                    <label for="input" class="text">Co-Supervisor</label>
+                                    <input formControlName="coadvisor" type="text" name="input" class="input"
+                                        placeholder="Supervisor 2" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+        <ng-template ngbSlide #secondstep id="secondstep">
+            <div class="semesters-container">
+                <div class="semester semester-1">
+                    <div class="semester-title"><span>1°</span></div>
+                    <div #course1n class="course-deactivated course course1" (click)="selectCourse(course1n)">
+                        <span>Sistemas de Ingeniería</span>
+                    </div>
+                    <div #course2n class="course-deactivated course course2" (click)="selectCourse(course2n)">
+                        <span>Optimización de Sistemas</span>
+                    </div>
+                    <div #course3n class="course-deactivated course course3" (click)="selectCourse(course3n)">
+                        <span>Innovación Tecnológica</span>
+                    </div>
+                    <div #course4n class="course-deactivated course course4" (click)="selectCourse(course4n)">
+                        <span>Metodología de Investigación</span>
+                    </div>
+                    <div #course5n class="course-deactivated course course5" (click)="selectCourse(course5n)">
+                        <span>Electivo I</span>
+                    </div>
+                </div>
+                <div class="semester semester-2">
+                    <div class="semester-title"><span>2°</span></div>
+                    <div #course6n class="course-deactivated course course6" (click)="selectCourse(course6n)">
+                        <span>Tópico de Especialidad I</span>
+                    </div>
+                    <div #course7n class="course-deactivated course course7" (click)="selectCourse(course7n)">
+                        <span>Análisis de Estado del Arte</span>
+                    </div>
+                    <div #course8n class="course-deactivated course course8" (click)="selectCourse(course8n)">
+                        <span>Unidad de Investigación I</span>
+                    </div>
+                    <div #course9n class="course-deactivated course course9" (click)="selectCourse(course9n)">
+                        <span>Electivo II</span>
+                    </div>
+                    <div #course10n class="course-deactivated course course10" (click)="selectCourse(course10n)">
+                        <span>Electivo III</span>
+                    </div>
+                </div>
+                <div class="semester semester-3">
+                    <div class="semester-title"><span>3°</span></div>
+                    <div #course11n class="course-deactivated course course11" (click)="selectCourse(course11n)">
+                        <span>Unidad de Investigación II</span>
+                    </div>
+                    <div #course12n class="course-deactivated course course12" (click)="selectCourse(course12n)">
+                        <span>Electivo IV</span>
+                    </div>
+                    <div #course13n class="course-deactivated course course13" (click)="selectCourse(course13n)">
+                        <span>Tópico de Especialidad II</span>
+                    </div>
+                    <div #course14n class="course-deactivated course course14" (click)="selectCourse(course14n)">
+                        <span>Proyecto de Tesis I</span>
+                    </div>
+                </div>
+                <div class="semester semester-4">
+                    <div class="semester-title"><span>4°</span></div>
+                    <div #course15n class="course-deactivated course course15" (click)="selectCourse(course15n)">
+                        <span>Taller de Publicación</span>
+                    </div>
+                    <div #course16n class="course-deactivated course course16" (click)="selectCourse(course16n)">
+                        <span>Proyecto de Tesis II</span>
+                    </div>
+                </div>
+                <div class="semester semester-5">
+                    <div class="semester-title"><span>5°</span></div>
+                    <div #course17n class="course-deactivated course course17" (click)="selectCourse(course17n)">
+                        <span>Tesis Doctoral I</span>
+                    </div>
+                </div>
+                <div class="semester semester-6">
+                    <div class="semester-title"><span>6°</span></div>
+                    <div #course18n class="course-deactivated course course18" (click)="selectCourse(course18n)">
+                        <span>Tesis Doctoral II</span>
+                    </div>
+                </div>
+                <div class="semester semester-78">
+                    <div class="semester-title"><span>7° 8°</span></div>
+                    <div #course19n class="course-deactivated course course19" (click)="selectCourse(course19n)">
+                        <span>Tesis de Doctorado y Examen de Grado</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+</div>
+<div class="modal-footer ns-modal-footer">
+    <button type="button" class="btn btn-custom btn-6rem" (click)="cancelModal()">Cancelar</button>
+    <button type="button" class="btn btn-custom btn-6rem" (click)="backSlide(carousel)"
+        [disabled]="backButton">Atrás</button>
+    <button *ngIf="createButtonText === 'Siguiente'" type="button" class="btn btn-custom btn-6rem"
+        (click)="nextSlide(carousel)">{{createButtonText}}</button>
+    <button *ngIf="createButtonText === 'Crear'" type="button" class="btn btn-custom btn-6rem"
+        (click)="modal.close('create')">{{createButtonText}}</button>
+
+</div> -->

@@ -1,1 +1,319 @@
-<p>students works!</p>
+<div class="student-base">
+
+    <!-- <div class="card filter-card">
+        <div class="card-header">
+            <h4 class="card-title">Filtros</h4>
+        </div>
+        <div class="card-body">
+            <form class="inputs-container">
+                <input type="text" class="form-control uni-id-filter" placeholder="Matrícula">
+                <input type="text" class="form-control name-filter" placeholder="Nombre">
+                <input type="text" class="form-control year-filter" placeholder="Año">
+                <input type="text" class="form-control email-filter" placeholder="Correo">
+                <input type="text" class="form-control state-filter" placeholder="Estado">
+                <input type="text" class="form-control ss-filter" placeholder="Financiamiento">
+                <input type="text" class="form-control state-filter" placeholder="Director">
+                <input type="text" class="form-control ss-filter" placeholder="Codirector">
+            </form>
+        </div>
+        <div class="card-footer"></div>
+    </div> -->
+
+    <div class="card">
+        <div class="card-header">
+            <div class="title-table-header">
+                <h4 class="card-title">Estudiantes</h4>
+                <div class="button-container">
+                    <input [(ngModel)]="filterText" type="text" class="form-control filter-input" placeholder="Buscar...">
+                    <button class="btn btn-add-s btn-outline-custom" (click)="openNewStudent(modalnewstudent)">✚</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 7%">Matrícula</th>
+                            <th scope="col" style="width: 19%">Nombre</th>
+                            <th scope="col" style="width: 5%">Año</th>
+                            <th scope="col" style="width: 10%">Correo</th>
+                            <th scope="col" style="width: 5%">Estado</th>
+                            <th scope="col" style="width: 15%">Financiamiento</th>
+                            <th scope="col" style="width: 13%">Supervisor</th>
+                            <th scope="col" style="width: 15%">Co-Supervisor</th>
+                            <th scope="col" style="width: 11%;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let s of students">
+                            <td>{{s.uni_id}}</td>
+                            <td>{{s.name}}</td>
+                            <td>{{s.year}}</td>
+                            <td>{{s.email}}</td>
+                            <td>{{s.state}}</td>
+                            <td>{{s.scholarship}}</td>
+                            <td>{{s.advisor}}</td>
+                            <td [ngClass]="{'not-defined': s.coadvisor == 'No Definido'}">{{s.coadvisor}}</td>
+                            <td>
+                                <div class="action-container">
+                                    <button class="btn btn-custom" (click)="openViewStudentModal(s)">
+                                        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
+                                                fill="#ffffff" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
+                                                fill="#ffffff" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <button class="btn btn-custom" (click)="openDeleteStudentModal(s)">
+                                        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10 12L14 16M14 12L10 16M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6"
+                                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="pagination-container">
+                
+                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                    (pageChange)="refreshStudents()">
+                    <ng-template ngbPaginationPrevious>Prev</ng-template>
+                    <ng-template ngbPaginationNext>Next</ng-template>
+                    <ng-template ngbPaginationEllipsis>...</ng-template>
+                    <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+                </ngb-pagination>
+
+                <!-- <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshStudents()">
+                    <option [ngValue]="8">8 estudiantes por página</option>
+                    <option [ngValue]="16">16 estudiantes por página</option>
+                    <option [ngValue]="24">24 estudiantes por página</option>
+                </select> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalverificationdelete let-modal>
+    <div class="modal-header vd-modal-header justify-content-center">
+        <h4 class="modal-title vd-modal-title">Eliminar Estudiante</h4>
+    </div>
+    <div class="modal-body vd-modal-body">
+        <span class="vd-modal-text">¿Está seguro de eliminar a <b>{{askedDeleteStudent}}</b>?</span>
+    </div>
+    <div class="modal-footer vd-modal-footer justify-content-center">
+
+        <button type="button" class="btn btn-custom" (click)="modal.close('cancel')">Cancelar</button>
+        <button type="button" class="btn btn-custom" (click)="modal.close('delete')">Eliminar</button>
+    </div>
+</ng-template>
+
+<ng-template #modalsecondverificationdelete let-modal>
+    <div class="modal-header vd-modal-header justify-content-center">
+        <h4 class="modal-title vd-modal-title">¿Seguro de eliminar a <b>{{askedDeleteStudent}}?</b></h4>
+    </div>
+    <div class="modal-body vd-modal-body">
+        <span class="vd-modal-text font-italic">Esta acción es irreversible y desencadena la eliminación de todos los
+            antecedentes del estudiante, incluyendo avance académico y su acceso a la plataforma.</span>
+        <br>
+        <span class="vd-modal-text font-italic">Si el estudiante fue eliminado se recomienda cambiar su estado de
+            <b>Activo</b> a <b>Eliminado</b>.</span>
+
+    </div>
+    <div class="modal-footer vd-modal-footer justify-content-center">
+
+        <button type="button" class="btn btn-custom" (click)="modal.close('cancel')">Cancelar</button>
+        <button type="button" class="btn btn-custom" (click)="modal.close('delete')">Eliminar</button>
+    </div>
+</ng-template>
+
+<ng-template #modalnewstudent let-modal id="modalnewstudent">
+    <div class="modal-header ns-modal-header justify-content-center">
+        <h4 class="modal-title ns-modal-title" id="modal-basic-title">Agregar Estudiante</h4>
+    </div>
+    <div class="modal-body ns-modal-body">
+        <ngb-carousel #carousel id="carousel">
+            <ng-template ngbSlide #firststep id="firststep">
+                <form [formGroup]="newStudentForm" (ngSubmit)="submitNewStudent(newStudentForm)" class="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Nombre *</label>
+                                        <input formControlName="name" type="text" name="input" class="input"
+                                            placeholder="Nombre Apellido Apellido" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Matricula *</label>
+                                        <input formControlName="uni_id" type="text" name="input" class="input"
+                                            placeholder="2023498999" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">R.U.N. *</label>
+                                        <input appRutFormat formControlName="dni" type="text" name="input" class="input"
+                                            placeholder="12.345.678-9" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Año *</label>
+                                        <input formControlName="year" type="text" name="input" class="input"
+                                            placeholder="2023" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Email Principal *</label>
+                                        <input formControlName="email" type="text" name="input" class="input"
+                                            placeholder="correo_estudiante@utalca.cl" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Email Opcional</label>
+                                        <input formControlName="emailextra" type="text" name="input" class="input"
+                                            placeholder="correo_extra@utalca.cl" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Estado *</label>
+                                        <input formControlName="state" type="text" name="input" class="input"
+                                            placeholder="Activo/Graduado/Eliminado" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Financiamiento *</label>
+                                        <input formControlName="scholarship" type="text" name="input" class="input"
+                                            placeholder="Conicyt/Utalca/Sin Beca" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Supervisor *</label>
+                                        <input formControlName="advisor" type="text" name="input" class="input"
+                                            placeholder="Supervisor 1" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="coolinput">
+                                        <label for="input" class="text">Co-Supervisor</label>
+                                        <input formControlName="coadvisor" type="text" name="input" class="input"
+                                            placeholder="Supervisor 2" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </ng-template>
+            <ng-template ngbSlide #secondstep id="secondstep">
+                <div class="semesters-container">
+                    <div class="semester semester-1">
+                        <div class="semester-title"><span>1°</span></div>
+                        <div #course1n class="course-deactivated course course1" (click)="selectCourse(course1n)">
+                            <span>Sistemas de Ingeniería</span>
+                        </div>
+                        <div #course2n class="course-deactivated course course2" (click)="selectCourse(course2n)">
+                            <span>Optimización de Sistemas</span>
+                        </div>
+                        <div #course3n class="course-deactivated course course3" (click)="selectCourse(course3n)">
+                            <span>Innovación Tecnológica</span>
+                        </div>
+                        <div #course4n class="course-deactivated course course4" (click)="selectCourse(course4n)">
+                            <span>Metodología de Investigación</span>
+                        </div>
+                        <div #course5n class="course-deactivated course course5" (click)="selectCourse(course5n)">
+                            <span>Electivo I</span>
+                        </div>
+                    </div>
+                    <div class="semester semester-2">
+                        <div class="semester-title"><span>2°</span></div>
+                        <div #course6n class="course-deactivated course course6" (click)="selectCourse(course6n)">
+                            <span>Tópico de Especialidad I</span>
+                        </div>
+                        <div #course7n class="course-deactivated course course7" (click)="selectCourse(course7n)">
+                            <span>Análisis de Estado del Arte</span>
+                        </div>
+                        <div #course8n class="course-deactivated course course8" (click)="selectCourse(course8n)">
+                            <span>Unidad de Investigación I</span>
+                        </div>
+                        <div #course9n class="course-deactivated course course9" (click)="selectCourse(course9n)">
+                            <span>Electivo II</span>
+                        </div>
+                        <div #course10n class="course-deactivated course course10" (click)="selectCourse(course10n)">
+                            <span>Electivo III</span>
+                        </div>
+                    </div>
+                    <div class="semester semester-3">
+                        <div class="semester-title"><span>3°</span></div>
+                        <div #course11n class="course-deactivated course course11" (click)="selectCourse(course11n)">
+                            <span>Unidad de Investigación II</span>
+                        </div>
+                        <div #course12n class="course-deactivated course course12" (click)="selectCourse(course12n)">
+                            <span>Electivo IV</span>
+                        </div>
+                        <div #course13n class="course-deactivated course course13" (click)="selectCourse(course13n)">
+                            <span>Tópico de Especialidad II</span>
+                        </div>
+                        <div #course14n class="course-deactivated course course14" (click)="selectCourse(course14n)">
+                            <span>Proyecto de Tesis I</span>
+                        </div>
+                    </div>
+                    <div class="semester semester-4">
+                        <div class="semester-title"><span>4°</span></div>
+                        <div #course15n class="course-deactivated course course15" (click)="selectCourse(course15n)">
+                            <span>Taller de Publicación</span>
+                        </div>
+                        <div #course16n class="course-deactivated course course16" (click)="selectCourse(course16n)">
+                            <span>Proyecto de Tesis II</span>
+                        </div>
+                    </div>
+                    <div class="semester semester-5">
+                        <div class="semester-title"><span>5°</span></div>
+                        <div #course17n class="course-deactivated course course17" (click)="selectCourse(course17n)">
+                            <span>Tesis Doctoral I</span>
+                        </div>
+                    </div>
+                    <div class="semester semester-6">
+                        <div class="semester-title"><span>6°</span></div>
+                        <div #course18n class="course-deactivated course course18" (click)="selectCourse(course18n)">
+                            <span>Tesis Doctoral II</span>
+                        </div>
+                    </div>
+                    <div class="semester semester-78">
+                        <div class="semester-title"><span>7° 8°</span></div>
+                        <div #course19n class="course-deactivated course course19" (click)="selectCourse(course19n)">
+                            <span>Tesis de Doctorado y Examen de Grado</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <div class="modal-footer ns-modal-footer">
+        <button type="button" class="btn btn-custom btn-6rem" (click)="modal.close('cancel')">Cancelar</button>
+        <button type="button" class="btn btn-custom btn-6rem" (click)="backSlide(carousel)"
+            [disabled]="backButton">Atrás</button>
+        <button *ngIf="createButtonText === 'Siguiente'" type="button" class="btn btn-custom btn-6rem"
+            (click)="nextSlide(carousel)">{{createButtonText}}</button>
+        <button *ngIf="createButtonText === 'Crear'" type="button" class="btn btn-custom btn-6rem"
+            (click)="modal.close('create')">{{createButtonText}}</button>
+        
+    </div>
+</ng-template>

@@ -1,17 +1,19 @@
 .sidenav {
-    background: #263238;
+    margin-top: 2.5vh;
+    margin-left: 10px;
     transition: all 0.5s ease;
     position: fixed;
     z-index: 1;
     top: 0;
     width: 5rem;
-    height: 100vh;
-    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
-    background: linear-gradient(300deg, rgba(11, 15, 118, 0.8), rgba(7, 7, 7, 1)), url('../../../../assets/director/background_1.jpg');
+    height: 95vh;
+    box-shadow: 0.063rem 0 1.25rem 0 rgba(0, 0, 0, 0.8);
+    background: linear-gradient(300deg, rgba(0, 27, 100, 0.8), rgba(7, 7, 7, 0.6)), url('../../../../assets/director/background_1.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     overflow-y: scroll;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar {
