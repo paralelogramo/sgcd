@@ -34,14 +34,14 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 7%">Matrícula</th>
-                            <th scope="col" style="width: 19%">Nombre</th>
-                            <th scope="col" style="width: 5%">Año</th>
-                            <th scope="col" style="width: 10%">Correo</th>
-                            <th scope="col" style="width: 5%">Estado</th>
-                            <th scope="col" style="width: 15%">Financiamiento</th>
-                            <th scope="col" style="width: 13%">Supervisor</th>
-                            <th scope="col" style="width: 15%">Co-Supervisor</th>
+                            <th scope="col" style="width: 7%;">Matrícula</th>
+                            <th scope="col" style="width: 19%;">Nombre</th>
+                            <th scope="col" style="width: 5%;">Año</th>
+                            <th scope="col" style="width: 10%;">Correo</th>
+                            <th scope="col" style="width: 5%;">Estado</th>
+                            <th scope="col" style="width: 15%;">Financiamiento</th>
+                            <th scope="col" style="width: 13%;">Supervisor</th>
+                            <th scope="col" style="width: 15%;">Co-Supervisor</th>
                             <th scope="col" style="width: 11%;">Acción</th>
                         </tr>
                     </thead>
@@ -51,7 +51,9 @@
                             <td>{{s.name}}</td>
                             <td>{{s.year}}</td>
                             <td>{{s.email}}</td>
-                            <td>{{s.state}}</td>
+                            <td><p class="state state-g" 
+                                [ngClass]="{ 'state-g' : s.state == 'Graduado', 'state-e' : s.state == 'Eliminado', 'state-a' : s.state == 'Activo' }">
+                                {{s.state}}</p></td>
                             <td>{{s.scholarship}}</td>
                             <td>{{s.advisor}}</td>
                             <td [ngClass]="{'not-defined': s.coadvisor == 'No Definido'}">{{s.coadvisor}}</td>
