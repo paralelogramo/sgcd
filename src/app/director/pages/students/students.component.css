@@ -474,3 +474,25 @@ ngb-pagination ::ng-deep ul>li.active>a {
     padding-bottom: 0.375rem;
     height: fit-content;
 }
+
+.state{
+    text-align: center;
+    border-radius: 5px;
+    margin: 0px !important;
+    padding: 3px;
+}
+
+.state-a {
+    border: 2px solid rgba(0, 0, 130, 0.2);
+    background-color: rgba(0, 0, 130, 0.05);
+}
+
+.state-g {
+    border: 2px solid rgba(0, 130, 0, 0.2);
+    background-color: rgba(0, 130, 0, 0.05);
+}
+
+.state-e {
+    border: 2px solid rgba(130, 0, 0, 0.2);
+    background-color: rgba(130, 0, 0, 0.05);
+}

@@ -91,19 +91,15 @@ export class StudentsComponent {
       STUDENT_DATA = students;
       STUDENT_DATA = this.mergeDuplicateStudents(STUDENT_DATA);
       this.refreshStudents();
-    },
-      (error) => {},
-      () => {
-        const btn = document.getElementsByClassName('btn'); // Asegúrate de que el tipo sea HTMLButtonElement
-        setTimeout(() => {
-          console.log(btn[1]);
-          (btn[1] as HTMLButtonElement).click();
-        }, 1000);
-        
-        // if (btn) {
-        //   btn.click();
-        // }
-      });
+    // },
+    // (error) => {},
+    // () => {
+    //   const btn = document.getElementsByClassName('btn'); // Asegúrate de que el tipo sea HTMLButtonElement
+    //   setTimeout(() => {
+    //     console.log(btn[1]);
+    //     (btn[1] as HTMLButtonElement).click();
+    //   }, 1000);
+    });
   }
 
   mergeDuplicateStudents(studentData: Student[]): Student[] {
