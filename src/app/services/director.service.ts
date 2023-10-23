@@ -22,6 +22,10 @@ export class DirectorService {
     return this.http.get(this.API_URL + '/student');
   }
 
+  getStudentHistory(id: string){
+    return this.http.get(this.API_URL + '/student/history/' + id);
+  }
+
   getStudentInfoByID() { }
 
   // Academics
