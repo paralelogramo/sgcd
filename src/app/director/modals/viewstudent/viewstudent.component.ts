@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Student } from '../../models/student.model';
 import { DirectorService } from 'src/app/services/director.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PersonalNote } from '../../models/personalNote.model';
 
@@ -37,6 +37,7 @@ export class ViewstudentComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public config: NgbCarouselConfig,
     private directorService: DirectorService
   ) {
@@ -145,6 +146,10 @@ export class ViewstudentComponent {
 
   editProfile() {
     console.log("edit perfil")
+  }
+
+  back() {
+    this.router.navigateByUrl('/director/students');
   }
 
 }
