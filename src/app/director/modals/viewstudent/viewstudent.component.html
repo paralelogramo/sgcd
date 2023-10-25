@@ -1,4 +1,4 @@
-<div class="modal-header justify-content-center">
+<!-- <div class="modal-header justify-content-center">
     <h4 class="modal-title" id="modal-basic-title">Ver Estudiante</h4>
 </div>
 <div class="modal-body">
@@ -181,4 +181,153 @@
         [disabled]="backButton">Atrás</button>
     <button type="button" class="btn btn-custom btn-6rem" (click)="nextSlide(carousel)"
         [disabled]="nextButton">Siguiente</button>
+</div> -->
+
+<!--
+    UN COL-12 PARA LA MISMA INFO QUE ARRIBA Y ABAJO OTRO COL-12 PARA LOS MODULOS, EL DE ABAJO ES UN
+    CAROUSEL DE 2 SLIDERS, EL PRIMERO LOS RAMOS Y LA SEGUNDA DE LAS NOTAS.
+-->
+
+<div class="student-base" *ngIf="dataLoaded; else loading">
+    <div class="row align-items-center h-100">
+        <div class="col-md-3 col-12">
+            <div class="card">
+                <button type="button" class="btn edit-button" (click)="editProfile()">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <div class="card-body">
+                    <div class="information-container">
+                        <div class="image-container">
+                            <img src="/assets/avatar/female_avatar.svg" class="student-photo">
+                        </div>
+                        
+                        <div class="data-container mt-3">
+                            <div class="student-name-container">
+                                <h3 class="student-name">{{vs.name}}</h3>
+                            </div>
+                            <div class="student-state-container my-1">
+                                <h5 class="student-state"
+                                    [ngClass]="{ 'state-g' : vs.state == 'Graduado', 'state-e' : vs.state == 'Eliminado', 'state-a' : vs.state == 'Activo' }">
+                                    Estudiante {{vs.state}}</h5>
+                            </div>
+                            <div class="student-job-container mt-1">
+                                <h3 class="student-job">Estudiante de Doctorado</h3>
+                            </div>
+                            <div class="email-container mt-4">
+                                <h5 class="email">{{vs.email}}</h5>
+                                <span class="text-under">Email principal</span>
+                            </div>
+                            <div class="email-extra-container mt-3">
+                                <h5 class="email">{{vs.emailextra}}</h5>
+                                <span class="text-under">Email extra</span>
+                            </div>
+                            <div class="identifiers-container mt-3">
+                                <div class="dni-container">
+                                    <h5 class="dni">{{vs.dni}}</h5>
+                                    <span class="text-under">R.U.N.</span>
+                                </div>
+                                <div class="uni-id-container">
+                                    <h5 class="uni-id">{{vs.uni_id}}</h5>
+                                    <span class="text-under">Matrícula</span>
+                                </div>
+                            </div>
+                            <div class="other-info-container mt-3">
+                                <div class="generation-container">
+                                    <h5 class="year">{{vs.year}}</h5>
+                                    <span class="text-under">Generación</span>
+                                </div>
+                                <div class="scholarship-container">
+                                    <h5 class="scholarship-state">{{vs.scholarship_state}}</h5>
+                                    <span class="text-under">Beca Actual</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-container mt-4">
+                            <button type="button" class="btn btn-custom btn-6rem">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-body card-body-student-data">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="title-notes-container">
+                        <h5 class="title-notes">Apuntes del Estudiante</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="sticky-notes-container p-2">
+                        <div *ngFor="let note of newNotes, index as i" class="sticky-note">
+                            <textarea class="d-inline-block note-text" (input)="autoExpand($event)" [(ngModel)]="note.text"></textarea>
+                            <button type="button" class="btn delete-note-button" (click)="removeNewNote(i)">
+                                <i class="bi bi-x-lg delete-icon"></i>
+                            </button>
+                        </div>
+                        <div *ngFor="let note of vs.notes" class="sticky-note">
+                            <span class="d-inline-block note-text">{{note.text}}</span>
+                            <span class="d-inline-block mt-2 note-datetime"><i>Creado el {{ note.created_note_timestamp | date: 'dd-MM-yyyy' }} a las {{ note.created_note_timestamp | date: 'HH:mm:ss' }}</i></span>
+                            <button type="button" class="btn delete-note-button">
+                                <i class="bi bi-x-lg delete-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="button-container d-flex flex-row justify-content-evenly">
+                        <button type="button" (click)="newNote()" class="btn btn-custom btn-6rem">Nuevo</button>
+                        <button [disabled]="saveNotesButton" (click)="saveNewNotes()" type="button" class="btn btn-custom btn-6rem">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<ng-template class="loader-container" #loading>
+    <div class="loader-container">
+        <svg xmlns="http://www.w3.org/2000/svg" height="200px" width="200px" viewBox="0 0 200 200" class="pencil">
+            <defs>
+                <clipPath id="pencil-eraser">
+                    <rect height="30" width="30" ry="5" rx="5"></rect>
+                </clipPath>
+            </defs>
+            <circle transform="rotate(-113,100,100)" stroke-linecap="round" stroke-dashoffset="439.82"
+                stroke-dasharray="439.82 439.82" stroke-width="2" stroke="currentColor" fill="none" r="70"
+                class="pencil__stroke"></circle>
+            <g transform="translate(100,100)" class="pencil__rotate">
+                <g fill="none">
+                    <circle transform="rotate(-90)" stroke-dashoffset="402" stroke-dasharray="402.12 402.12" stroke-width="30"
+                        stroke="hsl(223,90%,50%)" r="64" class="pencil__body1"></circle>
+                    <circle transform="rotate(-90)" stroke-dashoffset="465" stroke-dasharray="464.96 464.96" stroke-width="10"
+                        stroke="hsl(223,90%,60%)" r="74" class="pencil__body2"></circle>
+                    <circle transform="rotate(-90)" stroke-dashoffset="339" stroke-dasharray="339.29 339.29" stroke-width="10"
+                        stroke="hsl(223,90%,40%)" r="54" class="pencil__body3"></circle>
+                </g>
+                <g transform="rotate(-90) translate(49,0)" class="pencil__eraser">
+                    <g class="pencil__eraser-skew">
+                        <rect height="30" width="30" ry="5" rx="5" fill="hsl(223,90%,70%)"></rect>
+                        <rect clip-path="url(#pencil-eraser)" height="30" width="5" fill="hsl(223,90%,60%)"></rect>
+                        <rect height="20" width="30" fill="hsl(223,10%,90%)"></rect>
+                        <rect height="20" width="15" fill="hsl(223,10%,70%)"></rect>
+                        <rect height="20" width="5" fill="hsl(223,10%,80%)"></rect>
+                        <rect height="2" width="30" y="6" fill="hsla(223,10%,10%,0.2)"></rect>
+                        <rect height="2" width="30" y="13" fill="hsla(223,10%,10%,0.2)"></rect>
+                    </g>
+                </g>
+                <g transform="rotate(-90) translate(49,-30)" class="pencil__point">
+                    <polygon points="15 0,30 30,0 30" fill="hsl(33,90%,70%)"></polygon>
+                    <polygon points="15 0,6 30,0 30" fill="hsl(33,90%,50%)"></polygon>
+                    <polygon points="15 0,20 10,10 10" fill="hsl(223,10%,10%)"></polygon>
+                </g>
+            </g>
+        </svg>
+    </div>
+</ng-template>

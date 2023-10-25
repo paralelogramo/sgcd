@@ -34,15 +34,15 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 7%;">Matrícula</th>
-                            <th scope="col" style="width: 19%;">Nombre</th>
-                            <th scope="col" style="width: 5%;">Año</th>
-                            <th scope="col" style="width: 10%;">Correo</th>
-                            <th scope="col" style="width: 5%;">Estado</th>
-                            <th scope="col" style="width: 15%;">Financiamiento</th>
-                            <th scope="col" style="width: 13%;">Supervisor</th>
-                            <th scope="col" style="width: 15%;">Co-Supervisor</th>
-                            <th scope="col" style="width: 11%;">Acción</th>
+                            <th class="" scope="col" style="width: 8%;">Matrícula</th>
+                            <th class="" scope="col" style="width: 16%;">Nombre</th>
+                            <th class="" scope="col" style="width: 4%;">Año</th>
+                            <th class="" scope="col" style="width: 18%;">Correo</th>
+                            <th class="" scope="col" style="width: 8%;">Estado</th>
+                            <th class="" scope="col" style="width: 13%;">Financiamiento</th>
+                            <th class="" scope="col" style="width: 11%;">Supervisor</th>
+                            <th class="" scope="col" style="width: 11%;">Co-Supervisor</th>
+                            <th class="" scope="col" style="width: 11%;">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,11 +52,11 @@
                             <td>{{s.year}}</td>
                             <td>{{s.email}}</td>
                             <td><p class="state state-g" 
-                                [ngClass]="{ 'state-g' : s.state == 'Graduado', 'state-e' : s.state == 'Eliminado', 'state-a' : s.state == 'Activo' }">
+                                [ngClass]="{ 'state-g' : s.state == 'Graduado', 'state-e' : s.state == 'Eliminado', 'state-a' : s.state == 'Activo', 'state-r' : s.state == 'Retirado'}">
                                 {{s.state}}</p></td>
                             <td>{{s.scholarship}}</td>
-                            <td>{{s.advisor}}</td>
-                            <td [ngClass]="{'not-defined': s.coadvisor == 'No Definido'}">{{s.coadvisor}}</td>
+                            <td [ngClass]="{'not-defined': s.advisor == 'Sin Definir'}">{{s.advisor}}</td>
+                            <td [ngClass]="{'not-defined': s.coadvisor == 'Sin Definir'}">{{s.coadvisor}}</td>
                             <td>
                                 <div class="action-container">
                                     <button class="btn btn-custom" (click)="openViewStudentModal(s)">

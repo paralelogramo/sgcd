@@ -1,30 +1,454 @@
-.card {
-    border: 0;
+.loader-container {
     position: relative;
     width: 100%;
-    margin-bottom: 30px;
-    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .1);
-}
-
-.card-header {
-    border: none;
-}
-
-.card-title {
-    color: #3c4858 !important;
-    margin-top: 10px;
-    font-weight: 100;
-}
-
-.card-body {
-    padding: 0px 10px;
-}
-
-.card-footer {
-    border: none;
+    height: 100%;
     display: grid;
     place-items: center;
 }
+
+.student-base {
+    padding: 0px !important;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    flex-wrap: nowrap;
+}
+
+.edit-button {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    font-size: 1.6rem;
+    z-index: 1;
+    border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.edit-button:hover {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.edit-button:active {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.delete-icon {
+    width: 3rem !important;
+    height: auto;
+    color: #32325d;
+}
+
+.card {
+    border: 0;
+    position: relative;
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .3);
+    height: 90vh;
+}
+
+.information-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-photo {
+    width: 8rem;
+    height: auto;
+}
+
+.student-name-container,
+.student-job-container,
+.student-state-container,
+.email-container,
+.email-extra-container,
+.financing-container,
+.title-notes-container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.student-name {
+    font-size: 1.3rem;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #32325d;
+    width: 100%;
+    text-align: center;
+}
+
+.student-job {
+    font-size: 1.15rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #32325d;
+    width: 100%;
+    text-align: center;
+}
+
+.student-state {
+    text-align: center;
+    border-radius: 5px;
+    padding: 0.25rem 1rem;
+    width: fit-content;
+    font-weight: 400;
+    font-size: 0.95345rem;
+}
+
+.state-a {
+    border: 2px solid rgba(0, 0, 130, 0.2);
+    background-color: rgba(0, 0, 130, 0.05);
+}
+
+.state-g {
+    border: 2px solid rgba(0, 130, 0, 0.2);
+    background-color: rgba(0, 130, 0, 0.05);
+}
+
+.state-e {
+    border: 2px solid rgba(130, 0, 0, 0.2);
+    background-color: rgba(130, 0, 0, 0.05);
+}
+
+.email, .dni, .uni-id, .year, .scholarship-state {
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 400;
+    color: #32325d;
+    width: 100%;
+    text-align: center;
+    margin: 0rem;
+}
+
+.text-under{
+    font-size: 0.95rem;
+    font-family: inherit;
+    font-weight: lighter;
+    color: #32325d;
+    width: 100%;
+    text-align: center;
+    margin: 0rem !important;
+}
+
+.identifiers-container,
+.other-info-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.dni-container, .uni-id-container,
+.generation-container, .scholarship-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.carousel-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.button-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.card-body-student-data {
+
+}
+
+.card-body {
+    height: 90vh;
+    padding: 0rem;
+    overflow: hidden;
+}
+
+.title-notes-container {
+    position: relative;
+}
+
+.title-notes {
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 500;
+    color: #32325d;
+    text-align: center;
+    margin: 0.323rem 0rem;
+}
+
+.sticky-notes-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sticky-notes-container::-webkit-scrollbar {
+    display: none;
+}
+
+.sticky-note {
+    width: 95%;
+    color: #333;
+    position: relative;
+    margin: 0 auto;
+    padding: 0.76rem;
+    box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.3);
+    background: #eae67299;
+    /* -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    transform: rotate(2deg);; */
+}
+
+.note-text {
+    width: 90%;
+    color: #32325d;
+}
+
+.note-datetime {
+    font-size: 0.9rem;
+    font-family: inherit;
+    font-weight: 200;
+    color: #32325d;
+}
+
+.delete-note-button {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0rem;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    background-color: transparent;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.pencil {
+    display: block;
+    width: 10em;
+    height: 10em;
+}
+
+.pencil__body1,
+.pencil__body2,
+.pencil__body3,
+.pencil__eraser,
+.pencil__eraser-skew,
+.pencil__point,
+.pencil__rotate,
+.pencil__stroke {
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.pencil__body1,
+.pencil__body2,
+.pencil__body3 {
+    transform: rotate(-90deg);
+}
+
+.pencil__body1 {
+    animation-name: pencilBody1;
+}
+
+.pencil__body2 {
+    animation-name: pencilBody2;
+}
+
+.pencil__body3 {
+    animation-name: pencilBody3;
+}
+
+.pencil__eraser {
+    animation-name: pencilEraser;
+    transform: rotate(-90deg) translate(49px, 0);
+}
+
+.pencil__eraser-skew {
+    animation-name: pencilEraserSkew;
+    animation-timing-function: ease-in-out;
+}
+
+.pencil__point {
+    animation-name: pencilPoint;
+    transform: rotate(-90deg) translate(49px, -30px);
+}
+
+.pencil__rotate {
+    animation-name: pencilRotate;
+}
+
+.pencil__stroke {
+    animation-name: pencilStroke;
+    transform: translate(100px, 100px) rotate(-113deg);
+}
+
+/* Animations */
+@keyframes pencilBody1 {
+
+    from,
+    to {
+        stroke-dashoffset: 351.86;
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 150.8;
+        /* 3/8 of diameter */
+        transform: rotate(-225deg);
+    }
+}
+
+@keyframes pencilBody2 {
+
+    from,
+    to {
+        stroke-dashoffset: 406.84;
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 174.36;
+        transform: rotate(-225deg);
+    }
+}
+
+@keyframes pencilBody3 {
+
+    from,
+    to {
+        stroke-dashoffset: 296.88;
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 127.23;
+        transform: rotate(-225deg);
+    }
+}
+
+@keyframes pencilEraser {
+    from,
+    to {
+        transform: rotate(-45deg) translate(49px, 0);
+    }
+    50% {
+        transform: rotate(0deg) translate(49px, 0);
+    }
+}
+
+@keyframes pencilEraserSkew {
+    from,
+    32.5%,
+    67.5%,
+    to {
+        transform: skewX(0);
+    }
+    35%,
+    65% {
+        transform: skewX(-4deg);
+    }
+    37.5%,
+    62.5% {
+        transform: skewX(8deg);
+    }
+    40%,
+    45%,
+    50%,
+    55%,
+    60% {
+        transform: skewX(-15deg);
+    }
+    42.5%,
+    47.5%,
+    52.5%,
+    57.5% {
+        transform: skewX(15deg);
+    }
+}
+
+@keyframes pencilPoint {
+    from,
+    to {
+        transform: rotate(-90deg) translate(49px, -30px);
+    }
+    50% {
+        transform: rotate(-225deg) translate(49px, -30px);
+    }
+}
+
+@keyframes pencilRotate {
+    from {
+        transform: translate(100px, 100px) rotate(0);
+    }
+    to {
+        transform: translate(100px, 100px) rotate(720deg);
+    }
+}
+
+@keyframes pencilStroke {
+    from {
+        stroke-dashoffset: 439.82;
+        transform: translate(100px, 100px) rotate(-113deg);
+    }
+    50% {
+        stroke-dashoffset: 164.93;
+        transform: translate(100px, 100px) rotate(-113deg);
+    }
+    75%,
+    to {
+        stroke-dashoffset: 439.82;
+        transform: translate(100px, 100px) rotate(112deg);
+    }
+}
+
+
+
+
+
+
+
+
+
 
 .btn-custom {
     font-size: 14px;

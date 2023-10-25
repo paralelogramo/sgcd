@@ -5,6 +5,7 @@ import { ResumeComponent } from './pages/resume/resume.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { DirectorComponent } from './director.component';
+import { ViewstudentComponent } from './modals/viewstudent/viewstudent.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'resumen', component: ResumeComponent },
       { path: 'academicos', component: AcademicsComponent },
       { path: 'estudiantes', component: StudentsComponent },
+      { path: 'estudiantes/:dni', component: ViewstudentComponent},
       { path: 'ramos', component: CoursesComponent },
     ]
   }
