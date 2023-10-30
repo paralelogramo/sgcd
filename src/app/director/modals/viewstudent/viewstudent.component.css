@@ -475,6 +475,10 @@ textarea:focus {
     width: 6rem;
 }
 
+.w-20 {
+    width: 20%;
+}
+
 .no-info-text {
     font-style: italic;
     opacity: 0.5;
