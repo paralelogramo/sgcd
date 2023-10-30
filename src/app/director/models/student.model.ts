@@ -12,4 +12,12 @@ export interface Student {
     year: number;
     courses: any;
     notes: any;
+    area: string;
+    exam_date: any;
+    supervisor: string,
+    cosupervisor: string,
+    director: string,
+    codirector: string,
+    project_date: any;
+    defense_date: any;
 }
