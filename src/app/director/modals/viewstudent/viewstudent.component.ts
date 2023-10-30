@@ -3,18 +3,9 @@ import { NgbActiveModal, NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng
 import { Student } from '../../models/student.model';
 import { DirectorService } from 'src/app/services/director.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { PersonalNote } from '../../models/personalNote.model';
-
-
-interface Module {
-  id: string,
-  name: string,
-  year: number,
-  semester: number,
-  state: string,
-  style: string
-}
+import { Request } from '../../models/request.model';
+import { Module } from '../../models/module.model';
 
 @Component({
   selector: 'app-viewstudent',
@@ -25,6 +16,8 @@ export class ViewstudentComponent {
 
   @ViewChild('carousel', { static: false }) carousel: NgbCarousel;
 
+  options: string[] = ["Enviada", "En Proceso", "Rechazada", "Aprobada"];
+
   @Input() vs: Student;
 
   dataLoaded: boolean = true;
@@ -33,6 +26,7 @@ export class ViewstudentComponent {
   nextButton: boolean = false;
 
   newNotes: PersonalNote[] = [];
+  requests: Request[] = [];
   saveNotesButton: boolean = true;
 
   constructor(
@@ -51,6 +45,9 @@ export class ViewstudentComponent {
   ngOnInit() {
     let dni = this.route.snapshot.paramMap.get('dni');
     this.directorService.getStudentInfoByID(dni).subscribe((student: Student) => {
+      if (student.exam_date == null){ student.exam_date = "Sin Información" }
+      if (student.project_date == null) { student.project_date = "Sin Información" }
+      if (student.defense_date == null) { student.defense_date = "Sin Información" }
       this.vs = student;
     },
     (error) => {},
@@ -76,19 +73,14 @@ export class ViewstudentComponent {
           }
         })
         this.vs.courses = history;
-      },
-      (error) => {},
-      () => {
-        this.directorService.getPersonalNotesOfStudent(dni).subscribe((notes: any[]) => {
-          console.log(notes)
-          this.vs.notes = notes;
-        });
-      })
+      });
+      this.directorService.getPersonalNotesOfStudent(dni).subscribe((notes: any[]) => {
+        this.vs.notes = notes;
+      });
+      this.directorService.getRequestsOfStudent(dni, this.directorService.dni).subscribe((requests: Request[]) => {
+        this.requests = requests;
+      });
     });
-  }
-
-  closeModal() {
-    
   }
 
   nextSlide(carousel) {
@@ -141,7 +133,13 @@ export class ViewstudentComponent {
   }
 
   deleteNote(id: number) {
-
+    this.directorService.deletePersonalNotesOfStudent(id.toString()).subscribe((response: any) => {
+      if(response.status == '200') {
+        this.directorService.getPersonalNotesOfStudent(this.vs.dni).subscribe((notes: any[]) => {
+          this.vs.notes = notes;
+        });
+      }
+    });
   }
 
   editProfile() {
@@ -149,7 +147,11 @@ export class ViewstudentComponent {
   }
 
   back() {
-    this.router.navigateByUrl('/director/students');
+    this.router.navigateByUrl('/director/estudiantes');
+  }
+
+  changeToNotes() {
+    
   }
 
 }
