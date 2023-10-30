@@ -19,87 +19,96 @@
         <div class="card-footer"></div>
     </div> -->
 
-    <div class="card">
-        <div class="card-header">
-            <div class="title-table-header">
-                <h4 class="card-title">Estudiantes</h4>
-                <div class="button-container">
-                    <input [(ngModel)]="filterText" type="text" class="form-control filter-input" placeholder="Buscar...">
-                    <button class="btn btn-add-s btn-outline-custom" (click)="openNewStudent(modalnewstudent)">✚</button>
+    <div class="row align-items-center h-100">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="title-table-header">
+                        <h4 class="card-title">Estudiantes</h4>
+                        <div class="button-container">
+                            <input [(ngModel)]="filterText" type="text" class="form-control filter-input" placeholder="Buscar...">
+                            <button class="btn btn-add-s btn-outline-custom" (click)="openNewStudent(modalnewstudent)">✚</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th class="" scope="col" style="width: 8%;">Matrícula</th>
-                            <th class="" scope="col" style="width: 16%;">Nombre</th>
-                            <th class="" scope="col" style="width: 4%;">Año</th>
-                            <th class="" scope="col" style="width: 18%;">Correo</th>
-                            <th class="" scope="col" style="width: 8%;">Estado</th>
-                            <th class="" scope="col" style="width: 13%;">Financiamiento</th>
-                            <th class="" scope="col" style="width: 11%;">Supervisor</th>
-                            <th class="" scope="col" style="width: 11%;">Co-Supervisor</th>
-                            <th class="" scope="col" style="width: 11%;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let s of students">
-                            <td>{{s.uni_id}}</td>
-                            <td>{{s.name}}</td>
-                            <td>{{s.year}}</td>
-                            <td>{{s.email}}</td>
-                            <td><p class="state state-g" 
-                                [ngClass]="{ 'state-g' : s.state == 'Graduado', 'state-e' : s.state == 'Eliminado', 'state-a' : s.state == 'Activo', 'state-r' : s.state == 'Retirado'}">
-                                {{s.state}}</p></td>
-                            <td>{{s.scholarship}}</td>
-                            <td [ngClass]="{'not-defined': s.advisor == 'Sin Definir'}">{{s.advisor}}</td>
-                            <td [ngClass]="{'not-defined': s.coadvisor == 'Sin Definir'}">{{s.coadvisor}}</td>
-                            <td>
-                                <div class="action-container">
-                                    <button class="btn btn-custom" (click)="openViewStudentModal(s)">
-                                        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
-                                                fill="#ffffff" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
-                                                fill="#ffffff" />
-                                        </svg>
-                                    </button>
-                                    
-                                    <button class="btn btn-custom" (click)="openDeleteStudentModal(s)">
-                                        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10 12L14 16M14 12L10 16M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6"
-                                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="pagination-container">
-                
-                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
-                    (pageChange)="refreshStudents()">
-                    <ng-template ngbPaginationPrevious>Prev</ng-template>
-                    <ng-template ngbPaginationNext>Next</ng-template>
-                    <ng-template ngbPaginationEllipsis>...</ng-template>
-                    <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
-                </ngb-pagination>
-
-                <!-- <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshStudents()">
-                    <option [ngValue]="8">8 estudiantes por página</option>
-                    <option [ngValue]="16">16 estudiantes por página</option>
-                    <option [ngValue]="24">24 estudiantes por página</option>
-                </select> -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="" scope="col" style="width: 8%;">Matrícula</th>
+                                    <th class="" scope="col" style="width: 16%;">Nombre</th>
+                                    <th class="" scope="col" style="width: 4%;">Año</th>
+                                    <th class="" scope="col" style="width: 18%;">Correo</th>
+                                    <th class="" scope="col" style="width: 8%;">Estado</th>
+                                    <th class="" scope="col" style="width: 13%;">Financiamiento</th>
+                                    <th class="" scope="col" style="width: 11%;">Supervisor</th>
+                                    <th class="" scope="col" style="width: 11%;">Co-Supervisor</th>
+                                    <th class="" scope="col" style="width: 11%;">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of students">
+                                    <td>{{s.uni_id}}</td>
+                                    <td>{{s.name}}</td>
+                                    <td>{{s.year}}</td>
+                                    <td>{{s.email}}</td>
+                                    <td>
+                                        <p class="state state-g"
+                                            [ngClass]="{ 'state-g' : s.state == 'Graduado', 'state-e' : s.state == 'Eliminado', 'state-a' : s.state == 'Activo', 'state-r' : s.state == 'Retirado'}">
+                                            {{s.state}}</p>
+                                    </td>
+                                    <td>{{s.scholarship}}</td>
+                                    <td [ngClass]="{'not-defined': s.advisor == 'Sin Definir'}">{{s.advisor}}</td>
+                                    <td [ngClass]="{'not-defined': s.coadvisor == 'Sin Definir'}">{{s.coadvisor}}</td>
+                                    <td>
+                                        <div class="action-container">
+                                            <button class="btn btn-custom" (click)="openViewStudentModal(s)">
+                                                <svg class="svg-icon" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
+                                                        fill="#ffffff" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
+                                                        fill="#ffffff" />
+                                                </svg>
+                                            </button>
+            
+                                            <button class="btn btn-custom" (click)="openDeleteStudentModal(s)">
+                                                <svg class="svg-icon" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M10 12L14 16M14 12L10 16M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6"
+                                                        stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="pagination-container">
+            
+                        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                            (pageChange)="refreshStudents()">
+                            <ng-template ngbPaginationPrevious>Prev</ng-template>
+                            <ng-template ngbPaginationNext>Next</ng-template>
+                            <ng-template ngbPaginationEllipsis>...</ng-template>
+                            <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+                        </ngb-pagination>
+            
+                        <!-- <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshStudents()">
+                                        <option [ngValue]="8">8 estudiantes por página</option>
+                                        <option [ngValue]="16">16 estudiantes por página</option>
+                                        <option [ngValue]="24">24 estudiantes por página</option>
+                                    </select> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

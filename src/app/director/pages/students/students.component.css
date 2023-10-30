@@ -1,14 +1,8 @@
 .student-base {
+    padding: 0px !important;
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    padding: 10px;
-    display: grid;
-    place-items: center;
 }
 
 .table-container::-webkit-scrollbar {
@@ -16,11 +10,9 @@
 }
 
 .card {
-    background: white;
     border: 0;
     position: relative;
-    width: 100%;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .3);
     height: 90vh;
 }
 
@@ -487,4 +479,8 @@ ngb-pagination ::ng-deep ul>li.active>a {
 .state-r {
     border: 2px solid rgba(100, 100, 100, 0.2);
     background-color: rgba(100, 100, 100, 0.05);
+}
+
+.row {
+    flex-wrap: nowrap;
 }
