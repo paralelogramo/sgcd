@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PersonalNote } from '../director/models/personalNote.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,13 @@ export class DirectorService {
     return this.http.get(this.API_URL + '/student/history/' + id);
   }
 
-  getStudentInfoByID() { }
+  getStudentInfoByID(id: string) {
+    return this.http.get(this.API_URL + '/student/' + id);
+  }
+
+  getPersonalNotesOfStudent(id: string) {
+    return this.http.get(this.API_URL + '/student/notes/' + id);
+  }
 
   // Academics
   getAcademics() { }
@@ -36,4 +43,13 @@ export class DirectorService {
   getModules() { }
   getModuleInfoByID() { }
 
+
+  // ============================
+  //         POST METHODS
+  // ============================
+
+  postPersonalNotesOfStudent(notes: PersonalNote[]) {
+    const data = { data: notes }
+    return this.http.post(this.API_URL + '/student/notes/', data);
+  }
 }

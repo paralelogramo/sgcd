@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { DirectorService } from 'src/app/services/director.service';
 import { ViewstudentComponent } from '../../modals/viewstudent/viewstudent.component';
+import { Router } from '@angular/router';
 
 let STUDENT_DATA: Student[] = [];
 
@@ -38,7 +39,8 @@ export class StudentsComponent {
     public fb: FormBuilder,
     public config: NgbCarouselConfig,
     private toastr: ToastrService,
-    private directorService: DirectorService
+    private directorService: DirectorService,
+    private router: Router
   ) {
     this.refreshStudents();
     config.interval = 0;
@@ -54,7 +56,7 @@ export class StudentsComponent {
       uni_id: ['2015407054', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       dni: ['19.254.373-8', [Validators.required]],
       email: ['virojas15@alumnos.utalca.cl', [Validators.required, Validators.email]],
-      emailextra: [''],
+      emailextra: ['virojas15@alumnos.utalca.cl'],
       state: ['Graduado', [Validators.required]],
       scholarship: ['Sin Beca', [Validators.required]],
       advisor: ['Renzo Angles', [Validators.required]],
@@ -89,7 +91,6 @@ export class StudentsComponent {
   loadStudents() {
     this.directorService.getStudents().subscribe((students: Student[]) => {
       STUDENT_DATA = students;
-      STUDENT_DATA = this.mergeDuplicateStudents(STUDENT_DATA);
       this.refreshStudents();
     // },
     // (error) => {},
@@ -100,40 +101,6 @@ export class StudentsComponent {
     //     (btn[1] as HTMLButtonElement).click();
     //   }, 1000);
     });
-  }
-
-  mergeDuplicateStudents(studentData: Student[]): Student[] {
-    const mergedStudents: { [key: string]: Student } = {};
-
-    studentData.forEach((student) => {
-      const key = `${student.uni_id}-${student.name}`;
-
-      if (key in mergedStudents) {
-        const existingStudent = mergedStudents[key];
-
-        if (student.advisor) {
-          existingStudent.advisor = student.advisor;
-        }
-
-        if (student.coadvisor) {
-          if (existingStudent.coadvisor) {
-            existingStudent.coadvisor += `, ${student.coadvisor}`;
-          } else {
-            existingStudent.coadvisor = student.coadvisor;
-          }
-        }
-      } else {
-        mergedStudents[key] = student;
-      }
-    });
-
-    Object.values(mergedStudents).forEach((student) => {
-      if (student.coadvisor === null) {
-        student.coadvisor = "No Definido";
-      }
-    });
-
-    return Object.values(mergedStudents);
   }
 
   submitNewStudent(s: any) {
@@ -151,9 +118,7 @@ export class StudentsComponent {
   }
 
   openViewStudentModal(s: Student) {
-    const modalRef = this.modalService.open(ViewstudentComponent, {centered: true, size: "lg" });
-    s.courses = [];
-    modalRef.componentInstance.vs = s;
+    this.router.navigateByUrl('director/estudiantes/' + s.dni);
   }
   
   openNewStudent(content) {
@@ -212,7 +177,7 @@ export class StudentsComponent {
     
   }
 
-  deleteStudent(id: string) {
+  deleteStudent(id: number) {
     STUDENT_DATA = STUDENT_DATA.filter((student) => student.uni_id !== id);
     this.refreshStudents();
   }

@@ -1,184 +1,264 @@
-<div class="modal-header justify-content-center">
-    <h4 class="modal-title" id="modal-basic-title">Ver Estudiante</h4>
-</div>
-<div class="modal-body">
-    <ngb-carousel #carousel id="carousel" class="relative">
-        <ng-template ngbSlide #firststep id="firststep">
-            <form class="form">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Nombre</label>
-                                    <input readonly type="text" name="input" class="input"
-                                        placeholder="Nombre Apellido Apellido" [value]="vs.name">
+<div class="student-base" *ngIf="dataLoaded; else loading">
+    <div class="row align-items-center h-100">
+        <div class="col-md-3 col-12">
+            <div class="card">
+                <button type="button" class="btn edit-button" (click)="editProfile()">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <div class="card-body p-0">
+                    <div class="information-container">
+                        <div class="image-container">
+                            <img src="/assets/avatar/female_avatar.svg" class="student-photo">
+                        </div>
+                        
+                        <div class="data-container mt-3">
+                            <div class="data-container">
+                                <h3 class="student-name">{{vs.name}}</h3>
+                            </div>
+                            <div class="data-container my-1">
+                                <h5 class="student-state"
+                                    [ngClass]="{ 'state-g' : vs.state == 'Graduado', 'state-e' : vs.state == 'Eliminado', 'state-a' : vs.state == 'Activo' }">
+                                    Estudiante {{vs.state}}</h5>
+                            </div>
+                            <div class="data-container mt-1 mb-0">
+                                <h3 class="student-job">Estudiante de Doctorado</h3>
+                            </div>
+                            <div class="data-container mt-0">
+                                <h3 class="text-data-area">{{vs.area}}</h3>
+                            </div>
+                            <div class="data-container mt-4">
+                                <h5 class="text-data">{{vs.email}}</h5>
+                                <span class="text-under">Email Principal</span>
+                            </div>
+                            <div class="data-container mt-3">
+                                <h5 class="text-data">{{vs.emailextra}}</h5>
+                                <span class="text-under">Email Extra</span>
+                            </div>
+                            <div class="identifiers-container mt-3">
+                                <div class="dni-container">
+                                    <h5 class="text-data">{{vs.dni}}</h5>
+                                    <span class="text-under">R.U.N.</span>
+                                </div>
+                                <div class="uni-id-container">
+                                    <h5 class="text-data">{{vs.uni_id}}</h5>
+                                    <span class="text-under">Matrícula</span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Matricula</label>
-                                    <input readonly type="text" name="input" class="input" placeholder="2023498999"
-                                        [value]="vs.uni_id">
+                            <div class="other-info-container mt-3">
+                                <div class="generation-container">
+                                    <h5 class="text-data">{{vs.year}}</h5>
+                                    <span class="text-under">Generación</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">R.U.N.</label>
-                                    <input readonly appRutFormat type="text" name="input" class="input"
-                                        placeholder="12.345.678-9" [value]="vs.dni">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Año</label>
-                                    <input readonly type="text" name="input" class="input" placeholder="2023"
-                                        [value]="vs.year">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Email Principal</label>
-                                    <input readonly type="text" name="input" class="input"
-                                        placeholder="correo_estudiante@utalca.cl" [value]="vs.email">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Email Opcional</label>
-                                    <input readonly type="text" name="input" class="input"
-                                        placeholder="Sin Correo Extra" [value]="vs.emailextra">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Estado</label>
-                                    <input readonly type="text" name="input" class="input"
-                                        placeholder="Activo/Graduado/Eliminado" [value]="vs.state">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Financiamiento</label>
-                                    <input readonly type="text" name="input" class="input"
-                                        placeholder="Conicyt/Utalca/Sin Beca" [value]="vs.scholarship">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Supervisor</label>
-                                    <input readonly type="text" name="input" class="input" placeholder="Supervisor 1"
-                                        [value]="vs.advisor">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="coolinput">
-                                    <label for="input" class="text">Co-Supervisor</label>
-                                    <input readonly type="text" name="input" class="input"
-                                        placeholder="Sin Segundo Supervisor" [value]="vs.coadvisor">
+                                <div class="scholarship-container">
+                                    <h5 class="text-data">{{vs.scholarship_state}}</h5>
+                                    <span class="text-under">Beca Actual</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </ng-template>
-
-        <ng-template ngbSlide #secondstep id="secondstep">
-            <div class="semesters-container">
-                <div class="semester semester-1">
-                    <div class="semester-title"><span>1°</span></div>
-                    <div [ngClass]="vs.courses[0].style" class="course course1" container="body" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Sistemas de Ingeniería</span>
-                    </div>
-                    <div [ngClass]="vs.courses[1].style" class="course course2" container="body" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Optimización de Sistemas</span>
-                    </div>
-                    <div [ngClass]="vs.courses[2].style" class="course course3" container="body" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Innovación Tecnológica</span>
-                    </div>
-                    <div [ngClass]="vs.courses[3].style" class="course course4" container="body" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Metodología de Investigación</span>
-                    </div>
-                    <div [ngClass]="vs.courses[4].style" class="course course5" container="body" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Electivo I</span>
-                    </div>
-                </div>
-                <div class="semester semester-2">
-                    <div class="semester-title"><span>2°</span></div>
-                    <div [ngClass]="vs.courses[5].style" class="course course6" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Tópico de Especialidad I</span>
-                    </div>
-                    <div [ngClass]="vs.courses[6].style" class="course course7" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Análisis de Estado del Arte</span>
-                    </div>
-                    <div [ngClass]="vs.courses[7].style" class="course course8" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Unidad de Investigación I</span>
-                    </div>
-                    <div [ngClass]="vs.courses[8].style" class="course course9" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Electivo II</span>
-                    </div>
-                    <div [ngClass]="vs.courses[9].style" class="course course10" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Electivo III</span>
-                    </div>
-                </div>
-                <div class="semester semester-3">
-                    <div class="semester-title"><span>3°</span></div>
-                    <div [ngClass]="vs.courses[10].style" class="course course11" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Unidad de Investigación II</span>
-                    </div>
-                    <div [ngClass]="vs.courses[11].style" class="course course12" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Electivo IV</span>
-                    </div>
-                    <div [ngClass]="vs.courses[12].style" class="course course13" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Tópico de Especialidad II</span>
-                    </div>
-                    <div [ngClass]="vs.courses[13].style" class="course course14" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Proyecto de Tesis I</span>
-                    </div>
-                </div>
-                <div class="semester semester-4">
-                    <div class="semester-title"><span>4°</span></div>
-                    <div [ngClass]="vs.courses[14].style" class="course course15" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Taller de Publicación</span>
-                    </div>
-                    <div [ngClass]="vs.courses[15].style" class="course course16" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Proyecto de Tesis II</span>
-                    </div>
-                </div>
-                <div class="semester semester-5">
-                    <div class="semester-title"><span>5°</span></div>
-                    <div [ngClass]="vs.courses[16].style" class="course course17" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Tesis Doctoral I</span>
-                    </div>
-                </div>
-                <div class="semester semester-6">
-                    <div class="semester-title"><span>6°</span></div>
-                    <div [ngClass]="vs.courses[17].style" class="course course18" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Tesis Doctoral II</span>
-                    </div>
-                </div>
-                <div class="semester semester-78">
-                    <div class="semester-title"><span>7° 8°</span></div>
-                    <div [ngClass]="vs.courses[18].style" class="course course19" placement="top" ngbTooltip="Nota: Sin Información">
-                        <span>Tesis de Doctorado y Examen de Grado</span>
+                <div class="card-footer">
+                    <div class="button-container">
+                        <button type="button" class="btn btn-custom btn-6rem" (click)="back()">Volver</button>
                     </div>
                 </div>
             </div>
-        </ng-template>
-
-        <ng-template ngbSlide #thirdstep id="thirdstep">
-            <div class="marks-container">
-                <h3>Aquí van a ir las notas del estudiante en los distintos módulos</h3>
+        </div>
+        <div class="col-md-6 col-12 semi-card-container">
+            <div class="row">
+                <div class="card semi-card">
+                    <div class="card-header">
+                        <div class="title-academic-info-container">
+                            <h5 class="title">Avance del Estudiante</h5>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.exam_date == 'Sin Información'}"
+                                        class="text-data">
+                                        {{vs.exam_date == 'Sin Información' ? vs.exam_date : (vs.exam_date | date: "dd-MM-yyyy")}}</h5>
+                                    <span class="text-under">Examen Clasificación</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.project_date == 'Sin Información'}"
+                                        class="text-data">
+                                        {{vs.project_date == 'Sin Información' ? vs.project_date : (vs.project_date | date:
+                                        "dd-MM-yyyy")}}</h5>
+                                    <span class="text-under">Proyecto de Tesis</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.defense_date == 'Sin Información'}"
+                                        class="text-data">
+                                        {{vs.defense_date == 'Sin Información' ? vs.defense_date : (vs.defense_date | date:
+                                        "dd-MM-yyyy")}}</h5>
+                                    <span class="text-under">Defensa de Tesis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.supervisor == 'Sin Información'}"
+                                        class="text-data">{{vs.supervisor}}</h5>
+                                    <span class="text-under">Supervisor</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.cosupervisor == 'Sin Información'}"
+                                        class="text-data">{{vs.cosupervisor}}</h5>
+                                    <span class="text-under">Co-Supervisor</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.director == 'Sin Información'}"
+                                        class="text-data">{{vs.director}}</h5>
+                                    <span class="text-under">Director</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="data-container container-border">
+                                    <h5 [ngClass]="{ 'no-info-text' : vs.codirector == 'Sin Información'}"
+                                        class="text-data">{{vs.codirector}}</h5>
+                                    <span class="text-under">Co-Director</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="button-container d-flex flex-row justify-content-evenly">
+                            <button disabled type="button" class="btn btn-custom">Editar Información</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </ng-template>
+            <div class="row">
+                <div class="card semi-card">
+                    <div class="card-header">
+                        <div class="title-academic-info-container">
+                            <h5 class="title">Solicitudes del Estudiante</h5>
+                        </div>
+                    </div>
+                    <div class="card-body overflow-hidden p-0">
+                        <div class="table-container">
+                            <table class="table table-hover table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 15%;" scope="col">Tipo</th>
+                                        <th style="width: 40%;" scope="col">Mensaje</th>
+                                        <th style="width: 25%;" scope="col">Fecha</th>
+                                        <th style="width: 20%;" scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let r of requests">
+                                        <td class="align-middle">{{r.type}}</td>
+                                        <td class="align-middle">{{r.comment}}</td>
+                                        <td class="align-middle">{{r.date | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+                                        <td class="align-middle">
+                                            <div class="option-container request-state" [ngClass]="{'s-request' : r.state == 'Enviada', 'ip-request' : r.state == 'En Proceso', 'r-request' : r.state == 'Rechazada', 'a-request' : r.state == 'Aprobada'}">
+                                                <select [(ngModel)]="r.state" class="select">
+                                                    <option *ngFor="let o of options" [ngValue]="o">
+                                                        {{o}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="button-container d-flex flex-row justify-content-evenly">
+                            <button type="button" disabled class="btn btn-custom" (click)="changeToNotes()">Ver Apuntes</button>
+                            <button type="button" disabled class="btn btn-custom" (click)="changeToNotes()">Ver Publicaciones</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="title-notes-container">
+                        <h5 class="title">Apuntes del Estudiante</h5>
+                    </div>
+                </div>
+                <div class="card-body p-0 overflow-hidden">
+                    <div class="sticky-notes-container p-2">
+                        <div *ngFor="let note of newNotes, index as i" class="sticky-note">
+                            <textarea class="d-inline-block note-text" (input)="autoExpand($event)" [(ngModel)]="note.text"></textarea>
+                            <button type="button" class="btn delete-note-button" (click)="removeNewNote(i)">
+                                <i class="bi bi-x-lg delete-icon"></i>
+                            </button>
+                        </div>
+                        <div *ngFor="let note of vs.notes" class="sticky-note">
+                            <span class="d-inline-block note-text">{{note.text}}</span>
+                            <span class="d-inline-block mt-2 note-datetime"><i>Creado el {{ note.created_note_timestamp | date: 'dd-MM-yyyy' }} a las {{ note.created_note_timestamp | date: 'HH:mm:ss' }}</i></span>
+                            <button type="button" class="btn delete-note-button" (click)="deleteNote(note.id)">
+                                <i class="bi bi-x-lg delete-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="button-container d-flex flex-row justify-content-evenly">
+                        <button type="button" (click)="newNote()" class="btn btn-custom btn-6rem">Nuevo</button>
+                        <button [disabled]="saveNotesButton" (click)="saveNewNotes()" type="button" class="btn btn-custom btn-6rem">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    </ngb-carousel>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-custom btn-6rem" (click)="closeModal()">Cerrar</button>
-    <button type="button" class="btn btn-custom btn-6rem" (click)="backSlide(carousel)"
-        [disabled]="backButton">Atrás</button>
-    <button type="button" class="btn btn-custom btn-6rem" (click)="nextSlide(carousel)"
-        [disabled]="nextButton">Siguiente</button>
-</div>
+<ng-template class="loader-container" #loading>
+    <div class="loader-container">
+        <svg xmlns="http://www.w3.org/2000/svg" height="200px" width="200px" viewBox="0 0 200 200" class="pencil">
+            <defs>
+                <clipPath id="pencil-eraser">
+                    <rect height="30" width="30" ry="5" rx="5"></rect>
+                </clipPath>
+            </defs>
+            <circle transform="rotate(-113,100,100)" stroke-linecap="round" stroke-dashoffset="439.82"
+                stroke-dasharray="439.82 439.82" stroke-width="2" stroke="currentColor" fill="none" r="70"
+                class="pencil__stroke"></circle>
+            <g transform="translate(100,100)" class="pencil__rotate">
+                <g fill="none">
+                    <circle transform="rotate(-90)" stroke-dashoffset="402" stroke-dasharray="402.12 402.12" stroke-width="30"
+                        stroke="hsl(223,90%,50%)" r="64" class="pencil__body1"></circle>
+                    <circle transform="rotate(-90)" stroke-dashoffset="465" stroke-dasharray="464.96 464.96" stroke-width="10"
+                        stroke="hsl(223,90%,60%)" r="74" class="pencil__body2"></circle>
+                    <circle transform="rotate(-90)" stroke-dashoffset="339" stroke-dasharray="339.29 339.29" stroke-width="10"
+                        stroke="hsl(223,90%,40%)" r="54" class="pencil__body3"></circle>
+                </g>
+                <g transform="rotate(-90) translate(49,0)" class="pencil__eraser">
+                    <g class="pencil__eraser-skew">
+                        <rect height="30" width="30" ry="5" rx="5" fill="hsl(223,90%,70%)"></rect>
+                        <rect clip-path="url(#pencil-eraser)" height="30" width="5" fill="hsl(223,90%,60%)"></rect>
+                        <rect height="20" width="30" fill="hsl(223,10%,90%)"></rect>
+                        <rect height="20" width="15" fill="hsl(223,10%,70%)"></rect>
+                        <rect height="20" width="5" fill="hsl(223,10%,80%)"></rect>
+                        <rect height="2" width="30" y="6" fill="hsla(223,10%,10%,0.2)"></rect>
+                        <rect height="2" width="30" y="13" fill="hsla(223,10%,10%,0.2)"></rect>
+                    </g>
+                </g>
+                <g transform="rotate(-90) translate(49,-30)" class="pencil__point">
+                    <polygon points="15 0,30 30,0 30" fill="hsl(33,90%,70%)"></polygon>
+                    <polygon points="15 0,6 30,0 30" fill="hsl(33,90%,50%)"></polygon>
+                    <polygon points="15 0,20 10,10 10" fill="hsl(223,10%,10%)"></polygon>
+                </g>
+            </g>
+        </svg>
+    </div>
+</ng-template>
